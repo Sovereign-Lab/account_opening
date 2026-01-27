@@ -427,7 +427,7 @@ $(document).ready(function () {
       
       // Redirect to success page after 2 seconds
       setTimeout(() => {
-          window.location.href = "http://127.0.0.1:5500/index.html"; // Change to your success URL
+          window.location.href = "https://sovereignfinanceltd.com"; // Change to your success URL
       }, 2000);
       $(".loader").hide();// hide loader
   })
@@ -438,7 +438,7 @@ $(document).ready(function () {
       
       // Redirect back to the form after 3 seconds
       setTimeout(() => {
-          window.location.href = "http://127.0.0.1:5500/index.html"; // Change to your form URL
+          window.location.href = "https://account-opening-dgej.onrender.com/"; // Change to your form URL
       }, 3000);
         $(".loader").hide();// hide loader
   });
