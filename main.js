@@ -303,7 +303,12 @@ $(document).ready(function () {
                 // alert("Inspect Element is disabled!");
             }
         });
-
+ 
+    //change text
+    if (window.innerWidth < 768) {
+    document.getElementById("nav-income-tab").textContent = "Identification";
+    document.getElementById("nav-rdu-tab").textContent = "KYC";
+}
 
         $(" #doc_nam,#doc_num, #did, #ded").val("").prop("disabled", true);
                 $(".ClassMixOfIdentification input[type='radio']").on("change", function () { 

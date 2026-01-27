@@ -8,10 +8,48 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
     <style>
-        .ctn{
+       .ctn{
             width: 70%;
             margin: auto;
         }
+        @media (max-width: 768px) {
+            .ctn {
+                width: 100%;
+                margin: 0;
+                padding: 5px;
+                box-sizing: border-box;
+            }
+            /* .navall {
+                    position: relative;
+                    top: 16;
+                    left: 0;
+                    right: 0;
+                    z-index: 1050;
+                } */
+                 .moih {
+                    width: 40%;      /* or 80%, 90% — your call */
+                    font-size: 0.9rem;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                 /* .moih::after {
+                    content: "MOI";
+                } */
+        }
+        /* .ctn {
+                width: 100%;
+                padding: 16px;
+                box-sizing: border-box;
+            }
+
+            @media (min-width: 769px) {
+                .ctn {
+                    width: 70%;
+                    margin: auto;
+                    padding: 0;
+                }
+            } */
         textarea {
             resize: none;
             }
@@ -34,6 +72,7 @@
   66% {background-size: 20% 100%,20% 100%,20% 10% }
   100%{background-size: 20% 100%,20% 100%,20% 100%}
 } */
+ 
  .loader {
     
     position: fixed; 
@@ -91,11 +130,11 @@
             
             <div class="card-body ">
                 <!--Navigation menustarts here-->
-                <nav>
+                <nav class="navall">
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <button class="nav-link active " id="nav-pi-tab" data-bs-toggle="tab" data-bs-target="#nav-pi" type="button" role="tab" aria-controls="nav-pi  " aria-selected="true">Personal Info</button>
 
-                        <button class="nav-link" id="nav-income-tab" data-bs-toggle="tab" data-bs-target="#nav-income" type="button" role="tab" aria-controls="nav-income" aria-selected="false">Means of Identification</button>
+                        <button class="nav-link moih" id="nav-income-tab" data-bs-toggle="tab" data-bs-target="#nav-income" type="button" role="tab" aria-controls="nav-income" aria-selected="false">Means of Identification</button>
                         <!-- 
                         <button class="nav-link" id="nav-ei-tab" data-bs-toggle="tab" data-bs-target="#nav-ei" type="button" role="tab" aria-controls="nav-ei" aria-selected="false">Employement</button>
 
@@ -124,43 +163,43 @@
                                     </div>
                                 </div>
                                 <div class="row name-info mb-3">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 mb-3">
                                         <input type="text" class="form-control" id="first_name" placeholder="First name" aria-label="First Name" name="First Name">
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 mb-3">
                                         <input type="text" class="form-control" id="middle_name" placeholder="Middle name" aria-label="Middle Name" name="Middle Name">
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 mb-3">
                                         <input type="text" class="form-control" id="last_name" placeholder="Last name" aria-label="Last Name" name="Last Name">
                                     </div>
                                 </div>
                                 <div class="row mt-3 mb-3">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 mb-3">
                                         <input type="date" class="form-control" id="dob" aria-label="Date of Birth" name="dob">
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 mb-3">
                                         <input type="text" class="form-control" id="nationality" placeholder="Nationality e.g Nigerian" aria-label="Nationality" name="Nationality">
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 mb-3">
                                         <input type="text" class="form-control" id="state_of_origin" placeholder="State of Origin" aria-label="State of Origin" name="state_of_origin">
                                     </div>   
                                 </div>
-                                <div class="row mt-3 mb-3">
-                                <div class="col-sm-4">
+                                <div class="row mt-3 mb-3 mb-3">
+                                <div class="col-sm-4 mb-3">
                                     <input type="text" class="form-control" id="bvn" placeholder="BVN" aria-label="bvn" name="BVN">
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-4 mb-3">
                                     <input type="text" class="form-control" id="psn" placeholder="Prefered SIM Network" aria-label="psn" name="PSN">
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-4 mb-3">
                                     <input type="text" class="form-control" id="contact_number" placeholder="Contact Number" aria-label="contact_number" name="contact_number">
                                 </div>   
                             </div>
                             <div class="row identity-info mb-3 mt-3">
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 mb-3">
                                     <input type="text" class="form-control" id="rbn" placeholder="Registered Business Name" aria-label="rbn" name="Registered Business Name">
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 mb-3">
                                     <input type="text" class="form-control" id="rbe" placeholder="Registered Business Email" aria-label="rbe" name="Registered Business Email">
                             </div>
                             </div>
@@ -173,7 +212,7 @@
                                     <label for="contact_address" name="Contact Address">Business Address</label>
                                 </div>
                                 <div class="row identity-info mb-3 mt-3">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 mb-3">
                                         <input type="text" class="form-control" id="city" placeholder="City" aria-label="City" name="City" >
                                     </div>
                                     <div class="col-sm-6">
@@ -181,7 +220,7 @@
                                     </div>
                                 </div>
                                 <div class="row identity-info mb-3">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 mb-3">
                                         <input type="number" class="form-control" id="phone_number" placeholder="Phone Number" aria-label="Mobile Number" name="Phone Number" >
                                     </div>                        
                                      <div class="col-sm-6 mb-3">
