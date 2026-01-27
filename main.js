@@ -248,6 +248,7 @@
 
 
 $(document).ready(function () {
+    const flow_url = "https://default7ad43cd200e44603887099fed75d00.df.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/e031fe75859f4bc4aa6eaa1864294677/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=uQ6JyNM3AyNjayilWMH7DvMkreQnRvvbZjCNMVQ-DHM"
 
     function updateSubmitButtonState() {
             const caCheckbox = document.getElementById("caCheckbox");
@@ -283,99 +284,298 @@ $(document).ready(function () {
         });
 
 
-    $(".ClassMixOfIdentification input[type='radio']").on("change", function () {
-                let selectedIndex = $(".ClassMixOfIdentification input[type='radio']").index(this) + 1;
-                let selectedValue = $(this).val();
-        
-                if (selectedIndex !== 4) {
-                    // Set first input to selected radio value and disable it
-                    $("#doc_nam").val(selectedValue).prop("disabled", true);
-        
-                    // Keep other inputs editable
-                    $("#doc_num, #did, #ded").prop("disabled", false);
-                } else {
-                    // If the fourth radio button is selected, enable all inputs
-                    $("#doc_nam, #doc_num, #did, #ded").val("").prop("disabled", false);
-                }
-            });
-
-
-    let formDataForCSV = null; // Store form data for CSV
-
-    $(".submitBtn, .submit2").on("click", function (e) {
-        e.preventDefault();
-        let errorDiv = $(".errorDiv");
-        errorDiv.empty();
-        let formData = new FormData();
-        let isValid = true;
-
-        function validateInput(selector, type = "text") {
-            $(selector).not(".no-validate").each(function () {
-                let $this = $(this);
-                let value = type === "file" ? $this[0].files[0] : $this.val().trim();
-                let fieldLabel = $this.attr("aria-label") || "this field";
-
-                if (!value) {
-                    errorDiv.append(`<p class='col-sm-6 alert alert-danger' role='alert'>Please fill out: ${fieldLabel}</p>`);
-                    isValid = false;
-                } else {
-                    formData.append(fieldLabel, value);
-                }
-            });
-        }
-
-        // Validate inputs
-        validateInput("input[type='text'], input[type='date'], input[type='number']");
-        validateInput("input[type='radio']:checked");
-        validateInput("textarea");
-        validateInput("input[type='file']", "file");
-
-        if (!isValid) {
-            console.warn("Form validation failed!");
-            return;
-        }
-
-        formDataForCSV = formData;
-    });
-
-    $("#sendCsvEmail").click(function () {
-        if (!formDataForCSV) {
-            alert("Please submit the form first!");
-            return;
-        }
-
-        let csvContent = "";
-        let headers = [];
-        let values = [];
-
-        for (let [key, value] of formDataForCSV.entries()) {
-            headers.push(key);
-            values.push(value);
-        }
-
-        csvContent += headers.join(",") + "\n" + values.join(",") + "\n";
-
-        let blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-
-        let formData = new FormData();
-        formData.append("csv_file", blob, "form_data.csv");
-        formData.append("email", "recipient@example.com"); // Change recipient email
-
-        $.ajax({
-            url: "send_email.php", // Backend script to handle email
-            type: "POST",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function (response) {
-                alert("CSV sent successfully!");
-                console.log(response);
-            },
-            error: function (xhr, status, error) {
-                alert("An error occurred: " + error);
-                console.error(xhr.responseText);
+    document.addEventListener("contextmenu", (event) => event.preventDefault());
+        document.addEventListener("keydown", function (event) {
+            if (event.ctrlKey && (event.key === "u" || event.key === "U")) {
+                event.preventDefault();
+                // alert("View Source is disabled!");
             }
         });
+        document.addEventListener("keydown", function (event) {
+            if (event.ctrlKey && (event.key === "s" || event.key === "S")) {   
+                event.preventDefault();
+                // alert("Save is disabled!");
+            }
+        });
+        document.addEventListener("keydown", function (event) {
+            if (event.ctrlKey && event.shiftKey && (event.key === "i" || event.key === "I")) {
+                event.preventDefault();
+                // alert("Inspect Element is disabled!");
+            }
+        });
+
+
+        $(" #doc_nam,#doc_num, #did, #ded").val("").prop("disabled", true);
+                $(".ClassMixOfIdentification input[type='radio']").on("change", function () { 
+                let selectedValue = $(this).val();
+
+                if (selectedValue !== "Others") { // Assuming "Other" is the 4th option
+                    $("#doc_nam").val(selectedValue).prop("disabled", true);
+                    $("#doc_num, #did, #ded").prop("disabled", false);
+                } else {
+                    $("#doc_nam, #doc_num, #did, #ded").val("").prop("disabled", false);
+                }
+        });
+
+    $('input[name="gender"]').on("change", function () {
+        console.log("Updated Selected Gender:", this.value);
     });
+    $('input[name="moi"]').on("change", function () {
+        console.log("Updated Selected Means of Identification:", this.value);
+    });
+
+    $('input[name="es"]').on("change", function () {
+        console.log("Updated Selected Employment Status:", this.value);
+    });
+
+    function validateInput(selector, regex = null) {
+        let isValid = true;
+        $(selector).each(function () {
+            let $this = $(this);
+            let value = $this.val().trim();
+            let fieldLabel = $this.attr("aria-label") || $this.attr("placeholder") || "this field";
+
+            if (!value) {
+                showError(`Please fill out: ${fieldLabel}`);
+                isValid = false;
+            } else if (regex && !regex.test(value)) {
+                showError(`Invalid input for: ${fieldLabel}`);
+                isValid = false;
+            }
+        });
+        return isValid;
+    }
+
+    function showError(message) {
+        $(".errorDiv").append(`<p class='col-sm-6 alert alert-danger' role='alert'>${message}</p>`);
+    }
+
+    async function handleFormSubmission(event) {
+        event.preventDefault();
+        $(".errorDiv").empty();
+
+        
+
+        let isValid = true;
+        isValid = validateInput("input[type='text'], input[type='email'], input[type='number'], select") && isValid;
+        isValid = validateInput("input[type='email']", /^[^\s@]+@[^\s@]+\.[^\s@]+$/) && isValid;
+        isValid = validateInput("input[type='number']", /^\d+$/) && isValid;
+
+       // if (!isValid) return;
+        $(".loader").show();// Show loader
+        const form = document.getElementById('myForm');
+        const formData = new FormData(form);
+        $("select").each(function () {
+        formData.append($(this).attr("name"), $(this).val());
+    });
+        $("#doc_nam").each(function () {
+        formData.append($(this).attr("name"), $(this).val());
+    });
+
+        async function readFile(file) {
+            return new Promise((resolve) => {
+                if (!file) {
+                    resolve(null);
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = (event) => resolve(event.target.result);
+                reader.readAsDataURL(file);
+            });
+        }
+
+        const copy_id = await readFile(formData.get("copy_id"));
+        const busines_utility_bill = await readFile(formData.get("busines_utility_bill"));
+        const cac_doc = await readFile(formData.get("cac_doc"));
+        const passport = await readFile(formData.get("passport"));
+        const biz_img = await readFile(formData.get("biz_img"));
+
+        const formattedData = Object.fromEntries(formData.entries());
+        formattedData.copy_id = { 
+            name: formData.get("copy_id")?.name || "",
+            type: formData.get("copy_id")?.type || "", 
+            data: copy_id };
+        formattedData.busines_utility_bill = { 
+            name: formData.get("busines_utility_bill")?.name || "",
+            type: formData.get("busines_utility_bill")?.type || "", 
+            data: busines_utility_bill };
+        formattedData.cac_doc = { 
+            name: formData.get("cac_doc")?.name || "",
+            type: formData.get("cac_doc")?.type || "", 
+            data: cac_doc };
+        formattedData.passport = { 
+            name: formData.get("passport")?.name || "",
+            type: formData.get("passport")?.type || "", 
+            data: passport };
+        formattedData.biz_img = { 
+            name: formData.get("biz_img")?.name || "",
+            type: formData.get("biz_img")?.type || "", 
+            data: biz_img };
+
+        console.log(formattedData);
+
+    fetch(flow_url, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(formattedData)
+}).then(response => response.text()) // Convert response to text
+  .then(data => {
+      const root = document.getElementById('root');
+      root.innerHTML = `<h1>Thank you for your application!</h1><p>${data}</p>`;
+      
+      // Redirect to success page after 2 seconds
+      setTimeout(() => {
+          window.location.href = "http://127.0.0.1:5500/index.html"; // Change to your success URL
+      }, 2000);
+      $(".loader").hide();// hide loader
+  })
+  .catch(error => {
+      console.error("Error:", error);
+      const root = document.getElementById('root');
+      root.innerHTML = `<h1>Submission Failed</h1><p>${error}</p>`;
+      
+      // Redirect back to the form after 3 seconds
+      setTimeout(() => {
+          window.location.href = "http://127.0.0.1:5500/index.html"; // Change to your form URL
+      }, 3000);
+        $(".loader").hide();// hide loader
+  });
+    }
+
+    $('#myForm').on('submit', handleFormSubmission);
+   
 });
+// $(document).ready(function () {
+
+//     function updateSubmitButtonState() {
+//             const caCheckbox = document.getElementById("caCheckbox");
+//             const submitButton = document.getElementById("submitbtn");
+
+//             const isHidden = caCheckbox.classList.contains("d-none");
+
+//             submitButton.disabled = isHidden;
+//             }
+
+//             // Initial state on page load
+//             updateSubmitButtonState();
+
+//             // When "Save changes" is clicked in the modal
+//             document.getElementById("saveCA").addEventListener("click", function () {
+//             const caCheckbox = document.getElementById("caCheckbox");
+//             const caWrapper = document.getElementById("caWrapper");
+//             const caLink = document.getElementById("caLink");
+
+//             // Make checkbox visible
+//             caCheckbox.classList.remove("d-none");
+
+//             // Optionally auto-check it
+//             caCheckbox.checked = true;
+//             caCheckbox.disabled = true
+//             caWrapper.disabled = true
+//             caLink.style.pointerEvents = "none";
+//             caLink.style.cursor = "not-allowed";
+            
+
+//             // Update submit button state
+//             updateSubmitButtonState();
+//         });
+
+
+//     $(".ClassMixOfIdentification input[type='radio']").on("change", function () {
+//                 let selectedIndex = $(".ClassMixOfIdentification input[type='radio']").index(this) + 1;
+//                 let selectedValue = $(this).val();
+        
+//                 if (selectedIndex !== 4) {
+//                     // Set first input to selected radio value and disable it
+//                     $("#doc_nam").val(selectedValue).prop("disabled", true);
+        
+//                     // Keep other inputs editable
+//                     $("#doc_num, #did, #ded").prop("disabled", false);
+//                 } else {
+//                     // If the fourth radio button is selected, enable all inputs
+//                     $("#doc_nam, #doc_num, #did, #ded").val("").prop("disabled", false);
+//                 }
+//             });
+
+
+//     let formDataForCSV = null; // Store form data for CSV
+
+//     $(".submitBtn, .submit2").on("click", function (e) {
+//         e.preventDefault();
+//         let errorDiv = $(".errorDiv");
+//         errorDiv.empty();
+//         let formData = new FormData();
+//         let isValid = true;
+
+//         function validateInput(selector, type = "text") {
+//             $(selector).not(".no-validate").each(function () {
+//                 let $this = $(this);
+//                 let value = type === "file" ? $this[0].files[0] : $this.val().trim();
+//                 let fieldLabel = $this.attr("aria-label") || "this field";
+
+//                 if (!value) {
+//                     errorDiv.append(`<p class='col-sm-6 alert alert-danger' role='alert'>Please fill out: ${fieldLabel}</p>`);
+//                     isValid = false;
+//                 } else {
+//                     formData.append(fieldLabel, value);
+//                 }
+//             });
+//         }
+
+//         // Validate inputs
+//         validateInput("input[type='text'], input[type='date'], input[type='number']");
+//         validateInput("input[type='radio']:checked");
+//         validateInput("textarea");
+//         validateInput("input[type='file']", "file");
+
+//         if (!isValid) {
+//             console.warn("Form validation failed!");
+//             return;
+//         }
+
+//         formDataForCSV = formData;
+//     });
+
+//     $("#sendCsvEmail").click(function () {
+//         if (!formDataForCSV) {
+//             alert("Please submit the form first!");
+//             return;
+//         }
+
+//         let csvContent = "";
+//         let headers = [];
+//         let values = [];
+
+//         for (let [key, value] of formDataForCSV.entries()) {
+//             headers.push(key);
+//             values.push(value);
+//         }
+
+//         csvContent += headers.join(",") + "\n" + values.join(",") + "\n";
+
+//         let blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+
+//         let formData = new FormData();
+//         formData.append("csv_file", blob, "form_data.csv");
+//         formData.append("email", "recipient@example.com"); // Change recipient email
+
+//         $.ajax({
+//             url: "send_email.php", // Backend script to handle email
+//             type: "POST",
+//             data: formData,
+//             contentType: false,
+//             processData: false,
+//             success: function (response) {
+//                 alert("CSV sent successfully!");
+//                 console.log(response);
+//             },
+//             error: function (xhr, status, error) {
+//                 alert("An error occurred: " + error);
+//                 console.error(xhr.responseText);
+//             }
+//         });
+//     });
+// });
 

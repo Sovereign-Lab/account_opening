@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Account Opening Form</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
@@ -54,7 +54,7 @@
                                 <div class="row mt-4 mb-3 pr-3">
                                     <div class="col-6">
                                         <label for="title" class="col-sm-2">Title</label>
-                                        <input id="title" type="text" class="form-control" placeholder="Mr., Mrs." value="" aria-label="Title" required>
+                                        <input id="title" type="text" class="form-control" placeholder="Mr., Mrs." value="" aria-label="Title" name="Title" required>
                                     </div>
                                     <div class="col-6">
                                         <label for="gender" class="col-sm-2">Gender</label><br>
@@ -66,13 +66,13 @@
                                 </div>
                                 <div class="row name-info mb-3">
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control" id="first_name" placeholder="First name" aria-label="First Nme">
+                                        <input type="text" class="form-control" id="first_name" placeholder="First name" aria-label="First Name" name="First Name">
                                     </div>
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control" id="middle_name" placeholder="Middle name" aria-label="Middle Name">
+                                        <input type="text" class="form-control" id="middle_name" placeholder="Middle name" aria-label="Middle Name" name="Middle Name">
                                     </div>
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control" id="last_name" placeholder="Last name" aria-label="Last Name">
+                                        <input type="text" class="form-control" id="last_name" placeholder="Last name" aria-label="Last Name" name="Last Name">
                                     </div>
                                 </div>
                                 <div class="row mt-3 mb-3">
@@ -80,53 +80,53 @@
                                         <input type="date" class="form-control" id="dob" aria-label="Date of Birth">
                                     </div>
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control" id="nationality" placeholder="Nationality e.g Nigerian" aria-label="Nationality">
+                                        <input type="text" class="form-control" id="nationality" placeholder="Nationality e.g Nigerian" aria-label="Nationality" name="Nationality">
                                     </div>
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control" id="state_of_origin" placeholder="State of Origin" aria-label="State of Origin">
+                                        <input type="text" class="form-control" id="state_of_origin" placeholder="State of Origin" aria-label="State of Origin" name="state_of_origin">
                                     </div>   
                                 </div>
                                 <div class="row mt-3 mb-3">
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="bvn" placeholder="BVN" aria-label="bvn">
+                                    <input type="text" class="form-control" id="bvn" placeholder="BVN" aria-label="bvn" name="BVN">
                                 </div>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="psn" placeholder="Prefered SIM Network" aria-label="psn">
+                                    <input type="text" class="form-control" id="psn" placeholder="Prefered SIM Network" aria-label="psn" name="PSN">
                                 </div>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="contact_number" placeholder="Contact Number" aria-label="contact_number">
+                                    <input type="text" class="form-control" id="contact_number" placeholder="Contact Number" aria-label="contact_number" name="contact_number">
                                 </div>   
                             </div>
                             <div class="row identity-info mb-3 mt-3">
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="rbn" placeholder="Registered Business Name" aria-label="rbn">
+                                    <input type="text" class="form-control" id="rbn" placeholder="Registered Business Name" aria-label="rbn" name="Registered Business Name">
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="rbe" placeholder="Registered Business Email" aria-label="rbe">
+                                    <input type="text" class="form-control" id="rbe" placeholder="Registered Business Email" aria-label="rbe" name="Registered Business Email">
                             </div>
                             </div>
                                 <div class="form-floating">
                                     <textarea class="form-control" id="residential_address" aria-label="Residential Address"></textarea>
-                                    <label for="residential_address">Residential Address</label>
+                                    <label for="residential_address" name="Residential Address">Residential Address</label>
                                 </div>
                                 <div class="form-floating mt-3">
                                     <textarea class="form-control" id="contact_address" aria-label="Contact Address"></textarea>
-                                    <label for="contact_address">Business Address</label>
+                                    <label for="contact_address" name="Contact Address">Business Address</label>
                                 </div>
                                 <div class="row identity-info mb-3 mt-3">
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="city" placeholder="City" aria-label="City">
+                                        <input type="text" class="form-control" id="city" placeholder="City" aria-label="City" name="City" >
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="country" placeholder="Country" aria-label="Country">
+                                        <input type="text" class="form-control" id="country" placeholder="Country" aria-label="Country" name="Country" >
                                     </div>
                                 </div>
                                 <div class="row identity-info mb-3">
                                     <div class="col-sm-6">
-                                        <input type="number" class="form-control" id="phone_number" placeholder="Phone Number" aria-label="Mobile Number">
+                                        <input type="number" class="form-control" id="phone_number" placeholder="Phone Number" aria-label="Mobile Number" name="Phone Number" >
                                     </div>                        
                                      <div class="col-sm-6 mb-3">
-                                        <input type="email" class="form-control" placeholder="david.taiwo@sfl.com" aria-label="email">
+                                        <input type="email" class="form-control" placeholder="david.taiwo@sfl.com" aria-label="email" name="Email" >
                                     </div>   
                                 </div>
                                   
@@ -156,20 +156,20 @@
                                             <div class="row mb-3">
                                                     <label for="doc_num" class="col-sm-3 col-form-label">Document Number</label>
                                                     <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="doc_num" aria-label="Document Number">
+                                                    <input type="text" class="form-control" id="doc_num" aria-label="Document Number" name="Document Number">
                                                     </div>
                                             </div>
                                             <div class="row mb-3">
                                                     <label for="did" class="col-sm-3 col-form-label">Document Issue Date</label>
                                                     <div class="col-sm-8">
-                                                    <input type="date" class="form-control" id="did" aria-label="Document Issue Date">
+                                                    <input type="date" class="form-control" id="did" aria-label="Document Issue Date" name="Document Isue Date">
                                                     </div>
                                             </div>
                                                
                                             <div class="row mb-3 ml-3">
                                                 <label for="ded" class="col-sm-3 col-form-label">Document Expiry Date</label>
                                                  <div class="col-sm-8">
-                                                    <input type="date" class="form-control" id="ded" aria-label="Document Expiry Date">
+                                                    <input type="date" class="form-control" id="ded" aria-label="Document Expiry Date" name="Document Expiry Date">
                                                 </div>
                                             </div>  
                                        
@@ -330,31 +330,31 @@
                                 <div class="row mb-3 ml-3">
                                     <label for="dl_doc" class="col-sm-4 col-form-label"> Copy of ID</label>
                                     <div class="col-sm-6">
-                                    <input type="file" class="form-control" id="dl_doc"aria-label="Driver's License File">
+                                    <input type="file" class="form-control" id="dl_doc"aria-label="Driver's License File" name="copy_id">
                                     </div>
                                 </div>
                                 <div class="row mb-3 ml-3">
                                     <label for="emid_doc" class="col-sm-4 col-form-label">Business utility bill (not later than 3 months)</label>
                                     <div class="col-sm-6">
-                                    <input type="file" class="form-control no-validate" id="emid_doc" aria-label="International Passport File">
+                                    <input type="file" class="form-control no-validate" id="emid_doc" aria-label="International Passport File" name="busines_utility_bill">
                                     </div>
                                 </div>
                                 <div class="row mb-3 ml-3">
-                                    <label for="emlou_doc" class="col-sm-4 col-form-label">Business utility bill (not later than 3 months)</label>
+                                    <label for="emlou_doc" class="col-sm-4 col-form-label">CAC Document Certificate</label>
                                     <div class="col-sm-6">
-                                    <input type="file" class="form-control no-validate" id="emlou_doc" aria-label="National ID File">
+                                    <input type="file" class="form-control no-validate" id="emlou_doc" aria-label="National ID File", name="cac_doc">
                                     </div>
                                 </div>
                                 <div class="row mb-3 ml-3">
                                     <label for="emloe_doc" class="col-sm-4 col-form-label"> Passport photograph</label>
                                     <div class="col-sm-6">
-                                    <input type="file" class="form-control no-validate" id="emloe_doc" aria-label="Utility Bill">
+                                    <input type="file" class="form-control no-validate" id="emloe_doc" aria-label="Utility Bill", name="passport">
                                     </div>
                                 </div>
                                 <div class="row mb-3 ml-3">
                                     <label for="emloc_doc" class="col-sm-4 col-form-label">Business Image (Exterior look for easy verification) </label>
                                     <div class="col-sm-6">
-                                    <input type="file" class="form-control no-validate" id="emloc_doc" aria-label="Permanent Voters card File">
+                                    <input type="file" class="form-control no-validate" id="emloc_doc" aria-label="Permanent Voters card File" name="biz_img">
                                     </div>
                                 </div>
                                 <div class="form-check" id="caWrapper">
