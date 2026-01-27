@@ -15,10 +15,69 @@
         textarea {
             resize: none;
             }
+            /* HTML: <div class="loader"></div> */
+/* .loader {
+  width: 45px;
+  aspect-ratio: 1;
+  --c: no-repeat linear-gradient(#000 0 0);
+  background: 
+    var(--c) 0%   50%,
+    var(--c) 50%  50%,
+    var(--c) 100% 50%;
+  background-size: 20% 100%;
+  animation: l1 1s infinite linear;
+}
+@keyframes l1 {
+  0%  {background-size: 20% 100%,20% 100%,20% 100%}
+  33% {background-size: 20% 10% ,20% 100%,20% 100%}
+  50% {background-size: 20% 100%,20% 10% ,20% 100%}
+  66% {background-size: 20% 100%,20% 100%,20% 10% }
+  100%{background-size: 20% 100%,20% 100%,20% 100%}
+} */
+ .loader {
+    
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0, 0, 0, 0.5); color: white; 
+    display: none; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 20px;
+    z-index: 9999;
+    gap: 5px;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  width: 35px;
+  aspect-ratio: 1;
+  box-shadow: 0 0 0 3px inset #fff;
+  animation: 2s infinite linear;
+  animation-name: l3-1,l3-2;
+  animation-delay: -1s,0s
+}
+.loader:after {
+  --s: -1;
+}
+@keyframes l3-1 {
+  0%   {border-radius:50% 0   0   50%}
+  25%  {border-radius:50% 50% 0   0  }
+  50%  {border-radius:0   50% 50% 0  }
+  75%  {border-radius:0   0   50% 50%}
+  100% {border-radius:50% 0   0   50%}
+}
+@keyframes l3-2{
+  0%   {transform:scaleX(var(--s,1)) rotate(0deg)}
+  100% {transform:scaleX(var(--s,1)) rotate(-360deg)}
+}
     </style>
 </head>
 <body>
-    <div class="col ctn">
+    <div class="col ctn" id="root">
+         <div class="loader"></div>
         <h1 class="h3 mb-2 text-gray-800">ACCOUNT OPENING FORM</h1>
                     
 
@@ -77,7 +136,7 @@
                                 </div>
                                 <div class="row mt-3 mb-3">
                                     <div class="col-sm-4">
-                                        <input type="date" class="form-control" id="dob" aria-label="Date of Birth">
+                                        <input type="date" class="form-control" id="dob" aria-label="Date of Birth" name="dob">
                                     </div>
                                     <div class="col-sm-4">
                                         <input type="text" class="form-control" id="nationality" placeholder="Nationality e.g Nigerian" aria-label="Nationality" name="Nationality">
@@ -106,11 +165,11 @@
                             </div>
                             </div>
                                 <div class="form-floating">
-                                    <textarea class="form-control" id="residential_address" aria-label="Residential Address"></textarea>
+                                    <textarea class="form-control" id="residential_address" aria-label="Residential Address" name="residential_address"></textarea>
                                     <label for="residential_address" name="Residential Address">Residential Address</label>
                                 </div>
                                 <div class="form-floating mt-3">
-                                    <textarea class="form-control" id="contact_address" aria-label="Contact Address"></textarea>
+                                    <textarea class="form-control" id="contact_address" aria-label="Contact Address" name="contact_address" ></textarea>
                                     <label for="contact_address" name="Contact Address">Business Address</label>
                                 </div>
                                 <div class="row identity-info mb-3 mt-3">

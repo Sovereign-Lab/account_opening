@@ -361,7 +361,7 @@ $(document).ready(function () {
         isValid = validateInput("input[type='email']", /^[^\s@]+@[^\s@]+\.[^\s@]+$/) && isValid;
         isValid = validateInput("input[type='number']", /^\d+$/) && isValid;
 
-       // if (!isValid) return;
+       if (!isValid) return;
         $(".loader").show();// Show loader
         const form = document.getElementById('myForm');
         const formData = new FormData(form);
