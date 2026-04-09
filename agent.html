@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Opening Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="shortcut icon" href="/lqc_logo.jpg" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <style>
+       .ctn{
+            width: 70%;
+            margin: auto;
+        }
+        @media (max-width: 768px) {
+            .ctn {
+                width: 100%;
+                margin: 0;
+                padding: 5px;
+                box-sizing: border-box;
+            }
+            /* .navall {
+                    position: relative;
+                    top: 16;
+                    left: 0;
+                    right: 0;
+                    z-index: 1050;
+                } */
+                 .moih {
+                    width: 40%;      /* or 80%, 90% — your call */
+                    font-size: 0.9rem;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                 /* .moih::after {
+                    content: "MOI";
+                } */
+        }
+        /* .ctn {
+                width: 100%;
+                padding: 16px;
+                box-sizing: border-box;
+            }
+
+            @media (min-width: 769px) {
+                .ctn {
+                    width: 70%;
+                    margin: auto;
+                    padding: 0;
+                }
+            } */
+        textarea {
+            resize: none;
+            }
+            /* HTML: <div class="loader"></div> */
+/* .loader {
+  width: 45px;
+  aspect-ratio: 1;
+  --c: no-repeat linear-gradient(#000 0 0);
+  background: 
+    var(--c) 0%   50%,
+    var(--c) 50%  50%,
+    var(--c) 100% 50%;
+  background-size: 20% 100%;
+  animation: l1 1s infinite linear;
+}
+@keyframes l1 {
+  0%  {background-size: 20% 100%,20% 100%,20% 100%}
+  33% {background-size: 20% 10% ,20% 100%,20% 100%}
+  50% {background-size: 20% 100%,20% 10% ,20% 100%}
+  66% {background-size: 20% 100%,20% 100%,20% 10% }
+  100%{background-size: 20% 100%,20% 100%,20% 100%}
+} */
+ 
+ .loader {
+    
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0, 0, 0, 0.5); color: white; 
+    display: none; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 20px;
+    z-index: 9999;
+    gap: 5px;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  width: 35px;
+  aspect-ratio: 1;
+  box-shadow: 0 0 0 3px inset #fff;
+  animation: 2s infinite linear;
+  animation-name: l3-1,l3-2;
+  animation-delay: -1s,0s
+}
+.loader:after {
+  --s: -1;
+}
+@keyframes l3-1 {
+  0%   {border-radius:50% 0   0   50%}
+  25%  {border-radius:50% 50% 0   0  }
+  50%  {border-radius:0   50% 50% 0  }
+  75%  {border-radius:0   0   50% 50%}
+  100% {border-radius:50% 0   0   50%}
+}
+@keyframes l3-2{
+  0%   {transform:scaleX(var(--s,1)) rotate(0deg)}
+  100% {transform:scaleX(var(--s,1)) rotate(-360deg)}
+}
+.img_logo {
+    display: block;
+    margin: 0 auto;        /* centers horizontally */
+    max-width: 50%;        /* responsive width */
+    height: auto;          /* keeps aspect ratio */
+}
+h1{
+    margin: auto 0;
+    display: block;
+}
+    </style>
+</head>
+<body>
+    <div class="col ctn" id="root">
+         <div class="loader"></div>
+         <div class="logo">
+            <img src="/Picture1.png" class="img_logo mb-3" alt="logo" />
+         </div>
+        <h1 class="h3 text-center text-gray-800 mx-auto">POS Request Form</h1>
+                    
+<a href="../" class="btn btn-primary mb-4">Back</a>
+    <!-- DataTales Example -->
+        <div class="errorDiv row" role="alert"></div>
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 row">
+                <h6 class="m-0 font-weight-bold text-primary col-6">Account Opening Form</h6>
+                <h6 class="m-0 font-weight-bold text-primary col-6 button align-items-right"></h6>
+            </div>
+            
+            <div class="card-body ">
+                <!--Navigation menustarts here-->
+                <nav class="navall">
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active " id="nav-pi-tab" data-bs-toggle="tab" data-bs-target="#nav-pi" type="button" role="tab" aria-controls="nav-pi  " aria-selected="true">Personal Info</button>
+
+                        <button class="nav-link moih" id="nav-income-tab" data-bs-toggle="tab" data-bs-target="#nav-income" type="button" role="tab" aria-controls="nav-income" aria-selected="false">Means of Identification</button>
+                        <!-- 
+                        <button class="nav-link" id="nav-ei-tab" data-bs-toggle="tab" data-bs-target="#nav-ei" type="button" role="tab" aria-controls="nav-ei" aria-selected="false">Employement</button>
+
+                        <button class="nav-link" id="nav-fd-tab" data-bs-toggle="tab" data-bs-target="#nav-fd" type="button" role="tab" aria-controls="nav-fd" aria-selected="false">Next of Kin</button>
+                        
+                        <button class="nav-link" id="nav-dd-tab" data-bs-toggle="tab" data-bs-target="#nav-dd" type="button" role="tab" aria-controls="nav-dd" aria-selected="false">Bank Details</button> -->
+
+                        <button class="nav-link" id="nav-rdu-tab" data-bs-toggle="tab" data-bs-target="#rdu" type="button" role="tab" aria-controls="rdu" aria-selected="false">KYC Document</button>
+                    </div>
+                </nav>  
+                <!--Navigation menu ends here-->     
+                      <form id="myForm" method="post" action=""  class="container-fluid">
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade active show" id="nav-pi" role="tabpanel" aria-labelledby="nav-pi-tab">
+                                <div class="row mt-4 mb-3 pr-3">
+                                    <div class="col-6">
+                                        <label for="title" class="col-sm-2">Title</label>
+                                        <input id="title" type="text" class="form-control" placeholder="Mr., Mrs." value="" aria-label="Title" name="Title" required>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="gender" class="col-sm-2">Gender</label><br>
+                                        <input type="radio" class="btn-check" aria-label="Gender" id="male" name="gender" value="Male" checked>
+                                        <label class="btn btn-outline-primary col-sm-4" for="male">Male</label>
+                                        <input type="radio" class="btn-check" id="female" name="gender" value="Female">
+                                        <label class="btn btn-outline-primary col-sm-4" aria-label="Gender" for="female">Female</label>
+                                    </div>
+                                </div>
+                                <div class="row name-info mb-3">
+                                    <div class="col-sm-4 mb-3">
+                                        <input type="text" class="form-control" id="first_name" placeholder="First name" aria-label="First Name" name="First Name">
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <input type="text" class="form-control" id="middle_name" placeholder="Middle name" aria-label="Middle Name" name="Middle Name">
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <input type="text" class="form-control" id="last_name" placeholder="Last name" aria-label="Last Name" name="Last Name">
+                                    </div>
+                                </div>
+                                <!-- Identity Information -->
+                                <div class="row identity-info mb-3 mt-3">
+                                    <div class="col-sm-6 mb-3">
+                                        <input type="text" class="form-control" id="rbn" placeholder="Registered Business Name" aria-label="rbn" name="Registered Business Name">
+                                    </div>
+                                    <div class="col-sm-6 mb-3">
+                                        <input type="text" class="form-control" id="rbe" placeholder="Registered Business Email" aria-label="rbe" name="Registered Business Email">
+                                    </div>
+                                </div>
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="residential_address" aria-label="Residential Address" name="residential_address"></textarea>
+                                    <label for="residential_address" name="Residential Address">Residential Address</label>
+                                </div>
+                                <div class="form-floating mt-3">
+                                    <textarea class="form-control" id="contact_address" aria-label="Contact Address" name="contact_address" ></textarea>
+                                    <label for="contact_address" name="Contact Address">Business Address</label>
+                                </div>
+                                <!-- Contact Information -->
+                                <div class="row mt-3 mb-3">
+                                    <div class="col-sm-2 mb-3">
+                                        <input type="date" class="form-control" id="dob" aria-label="Date of Birth" name="dob">
+                                    </div>
+                                    <div class="col-sm-3 mb-3">
+                                        <input type="number" class="form-control" id="phone_number" placeholder="Phone Number" aria-label="Mobile Number" name="Phone Number" >
+                                    </div>                        
+                                     <div class="col-sm-4 mb-3">
+                                        <input type="email" class="form-control" placeholder="david.taiwo@sfl.com" aria-label="email" name="Email" >
+                                    </div>  
+                                    <div class="col-sm-3 mb-3">
+                                        <input type="text" class="form-control" id="bvn" placeholder="BVN" aria-label="bvn" name="BVN">
+                                    </div>
+                                </div>
+                                <!-- <div class="row mt-3 mb-3 mb-3">
+                                    <div class="col-sm-4 mb-3">
+                                        <input type="text" class="form-control" id="bvn" placeholder="BVN" aria-label="bvn" name="BVN">
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <input type="text" class="form-control" id="psn" placeholder="Prefered SIM Network" aria-label="psn" name="PSN">
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <input type="text" class="form-control" id="contact_number" placeholder="Contact Number" aria-label="contact_number" name="contact_number">
+                                    </div>   
+                                </div>
+                            </div> -->
+                                <!-- <div class="row identity-info mb-3 mt-3">
+                                    <div class="col-sm-6 mb-3">
+                                        <input type="text" class="form-control" id="city" placeholder="City" aria-label="City" name="City" >
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="country" placeholder="Country" aria-label="Country" name="Country" >
+                                    </div>
+                                </div> -->
+                                <!-- <div class="row identity-info mb-3">
+                                    <div class="col-sm-4 mb-3">
+                                        <input type="text" class="form-control" id="nationality" placeholder="Nationality e.g Nigerian" aria-label="Nationality" name="Nationality">
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <input type="text" class="form-control" id="state_of_origin" placeholder="State of Origin" aria-label="State of Origin" name="state_of_origin">
+                                    </div>   
+                                </div> -->
+                                  
+                                                               
+                            </div>
+                            <div class="tab-pane fade" id="nav-income" role="tabpanel" aria-labelledby="nav-income-tab">
+                                    <fieldset>
+                                        <legend>Means of Identification</legend>
+                                        <!--Means of identification start here-->
+                                            <div class="accordion-item mb-4 ClassMixOfIdentification" type="text">
+                                                <label for="" class="mr-4 p-2 col-sm-3 ">Means of Identification</label>
+                                                <input type="radio" class="btn-check" id="ip" name="moi" value="International Passport" aria-label="Means of Identification">
+                                                <label class="btn btn-outline-primary mr-3" for="ip">International Passport</label>
+                                                <input type="radio" class="btn-check" id="dl" name="moi" value="Driver’s License" aria-label="Means of Identification">
+                                                <label class="btn btn-outline-primary mr-3" for="dl">Driver’s License</label>
+                                                <input type="radio" class="btn-check" id="ni" name="moi" value="National ID" aria-label="Means of Identification">
+                                                <label class="btn btn-outline-primary mr-3" for="ni">National ID</label>
+                                                <input type="radio" class="btn-check" id="ot" name="moi" value="Voter's Card" aria-label="Means of Identification">
+                                                <label class="btn btn-outline-primary" for="ot">Voter's Card</label>
+                                            </div>
+                                            <div class="row mb-3 ml-3">
+                                                    <label for="doc_nam" class="col-sm-3 col-form-label">Document Name</label>
+                                                    <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="doc_nam" aria-label="Document Name">
+                                                    </div>
+                                            </div>
+                                            <!-- <div class="row mb-3">
+                                                    <label for="doc_num" class="col-sm-3 col-form-label">Document Number</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="doc_num" aria-label="Document Number" name="Document Number">
+                                                    </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                    <label for="did" class="col-sm-3 col-form-label">Document Issue Date</label>
+                                                    <div class="col-sm-8">
+                                                    <input type="date" class="form-control" id="did" aria-label="Document Issue Date" name="Document Isue Date">
+                                                    </div>
+                                            </div>
+                                               
+                                            <div class="row mb-3 ml-3">
+                                                <label for="ded" class="col-sm-3 col-form-label">Document Expiry Date</label>
+                                                 <div class="col-sm-8">
+                                                    <input type="date" class="form-control" id="ded" aria-label="Document Expiry Date" name="Document Expiry Date">
+                                                </div>
+                                            </div>   -->
+                                       
+                                <!--Means of identification ends here-->           
+                                    </fieldset>                                            
+                                </div>
+                            <div class="tab-pane fade" id="nav-ch" role="tabpanel" aria-labelledby="nav-ch-tab">
+                               
+                            </div>
+                            <!-- <div class="tab-pane fade" id="nav-fd" role="tabpanel" aria-labelledby="nav-fd-tab">
+                                <fieldset>
+                                    <legend>Next of Kin Details</legend>
+                                    <div class="row mb-3 ml-3">
+                                        <label for="snok" class="col-sm-3 col-form-label">SurName</label>
+                                        <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="snok" aria-label="Surname of Next of KIN">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3 ml-3">
+                                        <label for="fnok" class="col-sm-3 col-form-label">First Name</label>
+                                        <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="fnok" aria-label="First Name of Next of KIN">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3 ml-3">
+                                        <label for="onok" class="col-sm-3 col-form-label" >Other Names</label>
+                                        <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="onok" aria-label="Other Name of Next of KIN">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3 ml-3">
+                                        <label for="rnok" class="col-sm-3 col-form-label">Relationship</label>
+                                        <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="rnok" aria-label="Relationship with Next of KIN">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3 ml-3">
+                                        <label for="a_nok" class="col-sm-3 col-form-label">Address of Next of Kin</label>
+                                        <div class="col-sm-8">
+                                            <textarea class="form-control" placeholder="158, Sinari Darinjo street" id="a_nok" aria-label="Address of Next of KIN"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3 ml-3">
+                                        <label for="pn_nok" class="col-sm-3 col-form-label">Phone Number</label>
+                                        <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="pn_nok" aria-label="Phone Number of Next of KIN">
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div> -->
+                            <!-- <div class="tab-pane fade" id="nav-ei" role="tabpanel" aria-labelledby="nav-ei-tab"> -->
+
+                                <!--Employment details information Starts here -->
+                                <!-- <fieldset>
+                                    <legend>Employment Details</legend>
+                                    <div class="col-12 mb-3">
+                                        <label for="" class="col-sm-3 ">Employment Status</label>
+                                        <input type="radio" class="btn-check" checked id="employed" name="es"  value="Employed" aria-label="Employment Details">
+                                        <label class="btn btn-outline-primary col-sm-2" for="employed">Employed</label>
+                                        <input type="radio" class="btn-check" id="semployed" name="es"  value="Self Employed" aria-label="Employment Details">
+                                        <label class="btn btn-outline-primary col-sm-2" for="semployed">Self Employed</label>
+                                        <input type="radio" class="btn-check" id="retired" name="es"  value="Retired" aria-label="Employment Details">
+                                        <label class="btn btn-outline-primary col-sm-2" for="retired">Retired</label>
+                                        <input type="radio" class="btn-check" id="esother" name="es"  value="Others" aria-label="Employment Details">
+                                        <label class="btn btn-outline-primary col-sm-2" for="esother">Others</label>
+                                    </div>
+                                    <div class="row mb-3 ml-3">
+                                        <label for="emp_dor" class="col-sm-3 col-form-label">Date of Employement</label>
+                                        <div class="col-sm-8">
+                                        <input type="date" class="form-control" id="emp_dor" aria-label="Date of Employement">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="emp_name" class="col-sm-3 col-form-label">Employer’s Name</label>
+                                        <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="emp_name" aria-label="Employer's Name">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="floatingTextarea4" class="col-sm-3">Employer's Address</label>
+                                        <div class="col-sm-8">
+                                            <textarea class="form-control" placeholder="158, Sinari Darinjo street" id="floatingTextarea4" aria-label="Employer’s Address" ></textarea>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="row mb-3 ml-3">
+                                        <label for="occupation" class="col-sm-3 col-form-label">Occupation</label>
+                                        <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="occupation" aria-label="Occupation">
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                             -->
+                            <!-- <div class="tab-pane fade" id="nav-dd" role="tabpanel" aria-labelledby="nav-dd-tab"> -->
+                                <!-- <fieldset>
+                                    <hr>
+                                    <legend>Bank Details</legend>
+                                    <hr>
+                                    <div class="row mb-3 ml-3">
+                                        <label for="act_name" class="col-sm-4 col-form-label">Account Name</label>
+                                        <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="act_name" aria-label="Account Name">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3 ml-3">
+                                        <label for="act_num" class="col-sm-4 col-form-label">Account Number</label>
+                                        <div class="col-sm-6">
+                                        <input type="number" class="form-control" id="act_num" aria-label="Occupation Account Number">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3 ml-3">
+                                        <label for="bnk_name" class="col-sm-4 col-form-label" >Bank Name</label>
+                                        <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="bnk_name" aria-label="Bank Name">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3 ml-3">
+                                        <label for="bvn" class="col-sm-4 col-form-label">BVN</label>
+                                        <div class="col-sm-6">
+                                        <input type="number" class="form-control" id="bvn" aria-label="BVN">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="" class="col-sm-4">Account Type</label>
+                                        <input type="radio" class="btn-check" value="Savings" checked id="savings" aria-label="Account Type" name="at" >
+                                        <label class="btn btn-outline-primary col-sm-3" for="savings">Savings</label>
+                                        <input type="radio" class="btn-check" id="current" value="Current" aria-label="Account Type" name="at">
+                                        <label class="btn btn-outline-primary col-sm-3" for="current">Current</label>
+                                    </div>
+                                    <div class="row mb-3 ml-3">
+                                        <label for="doo" class="col-sm-4 col-form-label">Date of Opening
+                                        </label>
+                                        <div class="col-sm-6">
+                                        <input type="date" class="form-control" id="doo" aria-label="Date of Opening">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row mb-3 ml-3">
+                                        <label for="sort_code" class="col-sm-4" > <strong>Please indicate how you heard about us?
+                                        </strong></label>
+                                        <div class="col-sm-6">
+                                            <select class="no-validate form-select form-select-sm col-4" aria-label=".form-select-sm example" >
+                                                <option selected value="none">Select one</option>
+                                                <option value="Website">Website</option>
+                                                <option value="News Paper">News Paper</option>
+                                                <option value="Radio Jingles">Radio Jingles</option>
+                                                <option value="Seminar">Seminar</option>
+                                                <option value="Word of mouth">Word of mouth</option>
+                                                <option value="Social Medi">Social Media</option>
+                                                <option class="others" value="Others">Others</option>
+                                                 </select>
+                                        </div>
+                                               
+                                </fieldset>
+                            </div> -->
+                            <div class="tab-pane fade" id="rdu" role="tabpanel" aria-labelledby="nav-rdu-tab">
+                                <div class="row mb-3 ml-3">
+                                    <label for="dl_doc" class="col-sm-4 col-form-label"> Copy of ID</label>
+                                    <div class="col-sm-6">
+                                    <input type="file" class="form-control" id="dl_doc"aria-label="Driver's License File" name="copy_id">
+                                    </div>
+                                </div>
+                                <div class="row mb-3 ml-3">
+                                    <label for="emid_doc" class="col-sm-4 col-form-label">Business utility bill (not later than 3 months)</label>
+                                    <div class="col-sm-6">
+                                    <input type="file" class="form-control no-validate" id="emid_doc" aria-label="International Passport File" name="busines_utility_bill">
+                                    </div>
+                                </div>
+                                <!-- <div class="row mb-3 ml-3">
+                                    <label for="emlou_doc" class="col-sm-4 col-form-label">CAC Document Certificate</label>
+                                    <div class="col-sm-6">
+                                    <input type="file" class="form-control no-validate" id="emlou_doc" aria-label="National ID File", name="cac_doc">
+                                    </div>
+                                </div> -->
+                                <div class="row mb-3 ml-3">
+                                    <label for="emloe_doc" class="col-sm-4 col-form-label"> Passport photograph</label>
+                                    <div class="col-sm-6">
+                                    <input type="file" class="form-control no-validate" id="emloe_doc" aria-label="Utility Bill", name="passport">
+                                    </div>
+                                </div>
+                                <!-- <div class="row mb-3 ml-3">
+                                    <label for="emloc_doc" class="col-sm-4 col-form-label">Business Image (Exterior look for easy verification) </label>
+                                    <div class="col-sm-6">
+                                    <input type="file" class="form-control no-validate" id="emloc_doc" aria-label="Permanent Voters card File" name="biz_img">
+                                    </div>
+                                </div> -->
+                                <div class="form-check" id="caWrapper">
+                                    <input class="form-check-input d-none" type="checkbox" value="" id="caCheckbox">
+                                    <label class="form-check-label" for="caCheckbox">
+                                       <a class="link-offset-2 link-offset-3-hover link-underline   link-underline-opacity-0 link-underline-opacity-75-hover" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" id="caLink">
+                                        I have read the terms and agreement
+                                        </a>
+                                    </label>
+                                </div>
+                                <div class="d-grid gap-2 col-7 mx-auto">
+                                    <button type="submit" class="submit2 btn btn-secondary" id="submitbtn">Submit</button>
+                                </div>
+                             </div>
+
+                                <!-- Button trigger modal -->
+                                 
+                                
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">CONSENT AND DECLARATION</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        I hereby declare that the information provided is true and accurate. I understand that this information will be used for the purpose of registering a POS terminal for my business use. I consent to the collection, use, and disclosure of my personal information as outlined in LIQUIDCREST MFB's privacy policy.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" id="saveCA" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                 
+                                </div>
+                                <!-- <div class="row mb-3 ml-3">
+                                    <label for="emta_doc" class="col-sm-4 col-form-label">  Tenancy Agreement (where utility bill is not in applicant name) Utility bills</label>
+                                    <div class="col-sm-6">
+                                    <input type="file" class="form-control" id="emta_doc" aria-label="SCUML">
+                                    </div>
+                                </div> -->
+                                <!-- <div class="row mb-3 ml-3">
+                                    <label for="emmc_bc_doc" class="col-sm-4 col-form-label"> Marriage/Birth Certificate</label>
+                                    <div class="col-sm-6">
+                                    <input type="file" class="form-control" id="emmc_bc_doc">
+                                    </div>
+                                </div>
+                                <div class="row mb-3 ml-3">
+                                    <label for="ps_6mth" class="col-sm-4 col-form-label"> Statement of Account for the past six (6) months.</label>
+                                    <div class="col-sm-6">
+                                    <input type="file" class="form-control" id="ps_6mth">
+                                    </div>
+                                </div>
+                                <div class="form-check mb-3 ml-4">
+                                    <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault" required>
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        hereby confirm that the information provided here is to the best knowledge and intent. I also authorize
+                                        SOVEREIGN FINANCE LIMITED to make enquiries considered necessary in establishing opinion on this Loan. I also confirm that the granting of this loan is not automatic but subject to a satisfactory opinion of
+                                        SOVEREIGN FINANCE LIMITED.
+                                    </label>-->
+                                  </div> 
+                                <!-- <input id="downloadCsv" type="submit" value="submit" class="btn btn-primary"> -->
+                            
+                               
+                            </div>
+                            
+                        </div>
+                           
+                      </form>
+                              
+                        </div>
+                        <!--<nav>
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                <button class="nav-link active " id="nav-pi-tab" data-bs-toggle="tab" data-bs-target="#nav-pi" type="button" role="tab" aria-controls="nav-pi  " aria-selected="true">Personal Info</button>
+        
+                                <button class="nav-link" id="nav-income-tab" data-bs-toggle="tab" data-bs-target="#nav-income" type="button" role="tab" aria-controls="nav-income" aria-selected="false">Income Status</button>
+        
+                                <button class="nav-link" id="nav-ch-tab" data-bs-toggle="tab" data-bs-target="#nav-ch" type="button" role="tab" aria-controls="nav-ch" aria-selected="false">Credit History</button>
+        
+                                <button class="nav-link" id="nav-fd-tab" data-bs-toggle="tab" data-bs-target="#nav-fd" type="button" role="tab" aria-controls="nav-fd" aria-selected="false">Family Details</button>
+        
+                                <button class="nav-link" id="nav-ei-tab" data-bs-toggle="tab" data-bs-target="#nav-ei" type="button" role="tab" aria-controls="nav-ei" aria-selected="false">Employement Info</button>
+        
+                                <button class="nav-link" id="nav-gi-tab" data-bs-toggle="tab" data-bs-target="#nav-gi" type="button" role="tab" aria-controls="nav-gi" aria-selected="false">Guarantor's Info</button>
+        
+                                <button class="nav-link" id="nav-ld-tab" data-bs-toggle="tab" data-bs-target="#nav-ld" type="button" role="tab" aria-controls="nav-ld" aria-selected="false">Loan Details</button>
+        
+                                <button class="nav-link" id="nav-dd-tab" data-bs-toggle="tab" data-bs-target="#nav-dd" type="button" role="tab" aria-controls="nav-dd" aria-selected="false">Disbursement Details</button>
+        
+                                <button class="nav-link" id="nav-rdu-tab" data-bs-toggle="tab" data-bs-target="#rdu" type="button" role="tab" aria-controls="rdu" aria-selected="false">Required Document Upload</button>
+                              </div>
+                        </nav>  -->
+                    </div>
+                    
+                </div>
+                
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
