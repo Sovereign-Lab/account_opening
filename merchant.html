@@ -190,11 +190,14 @@ h1{
                                 </div>
                                 <!-- Identity Information -->
                                 <div class="row identity-info mb-3 mt-3">
-                                    <div class="col-sm-6 mb-3">
+                                    <div class="col-sm-4 mb-3">
                                         <input type="text" class="form-control" id="rbn" placeholder="Registered Business Name" aria-label="rbn" name="Registered Business Name">
                                     </div>
-                                    <div class="col-sm-6 mb-3">
+                                    <div class="col-sm-4 mb-3">
                                         <input type="text" class="form-control" id="rbe" placeholder="Registered Business Email" aria-label="rbe" name="Registered Business Email">
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <input type="text" class="form-control" id="customer_type" placeholder="Customer Type" aria-label="customer_type" name="Customer Type">
                                     </div>
                                 </div>
                                 <div class="form-floating">
@@ -574,6 +577,26 @@ h1{
                 </div>
                 
     </div>
+    <script>
+    $(document).ready(function () {
+
+        let params = new URLSearchParams(window.location.search);
+
+        let customerType = params.get("customer_type");
+
+        if (customerType) {
+            // alert("Customer Type: " + customerType);
+            setTimeout(() => {
+                $("#customer_type").val(customerType).trigger("change");
+            }, 300);
+            setTimeout(() => {
+                $("#customer_type").val(customerType).trigger("change");
+            }, 300);
+
+        }
+
+    });
+</script>
 
     <script src="main.js"></script>
 </body>

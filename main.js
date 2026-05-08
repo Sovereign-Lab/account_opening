@@ -250,6 +250,24 @@
 $(document).ready(function () {
     const flow_url = "https://default7ad43cd200e44603887099fed75d00.df.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/e031fe75859f4bc4aa6eaa1864294677/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=uQ6JyNM3AyNjayilWMH7DvMkreQnRvvbZjCNMVQ-DHM"
 
+    $(".merchant_btn").on("click", function (e) {
+        e.preventDefault();
+
+        let customerType = "Merchant";
+
+        window.location.href =
+            "merchant.html?customer_type=" +
+            encodeURIComponent(customerType);
+    });
+     $(".agent_btn").on("click", function (e) {
+        e.preventDefault();
+
+        let customerType = "Agent";
+
+        window.location.href =
+            "agent.html?customer_type=" +
+            encodeURIComponent(customerType);
+    });
     function updateSubmitButtonState() {
             const caCheckbox = document.getElementById("caCheckbox");
             const submitButton = document.getElementById("submitbtn");
@@ -283,26 +301,28 @@ $(document).ready(function () {
             updateSubmitButtonState();
         });
 
+      
 
+
+        //     }
+        // });
+        // document.addEventListener("keydown", function (event) {
+        //     if (event.ctrlKey && (event.key === "s" || event.key === "S")) {   
+        //         event.preventDefault();
+        //         // alert("Save is disable
     document.addEventListener("contextmenu", (event) => event.preventDefault());
-        document.addEventListener("keydown", function (event) {
-            if (event.ctrlKey && (event.key === "u" || event.key === "U")) {
-                event.preventDefault();
-                // alert("View Source is disabled!");
-            }
-        });
-        document.addEventListener("keydown", function (event) {
-            if (event.ctrlKey && (event.key === "s" || event.key === "S")) {   
-                event.preventDefault();
-                // alert("Save is disabled!");
-            }
-        });
-        document.addEventListener("keydown", function (event) {
-            if (event.ctrlKey && event.shiftKey && (event.key === "i" || event.key === "I")) {
-                event.preventDefault();
-                // alert("Inspect Element is disabled!");
-            }
-        });
+        // document.addEventListener("keydown", function (event) {
+        //     if (event.ctrlKey && (event.key === "u" || event.key === "U")) {
+        //         event.preventDefault();
+        //         // alert("View Source is disabled!");d!");
+        //     }
+        // });
+        // document.addEventListener("keydown", function (event) {
+        //     if (event.ctrlKey && event.shiftKey && (event.key === "i" || event.key === "I")) {
+        //         event.preventDefault();
+        //         // alert("Inspect Element is disabled!");
+        //     }
+        // });
  
     //change text
     if (window.innerWidth < 768) {
@@ -310,7 +330,9 @@ $(document).ready(function () {
     document.getElementById("nav-rdu-tab").textContent = "KYC";
 }
 
-        $(" #doc_nam,#doc_num, #did, #ded").val("").prop("disabled", true);
+
+
+        $(" #doc_nam,#doc_num, #did, #ded, #customer_type").val("").prop("disabled", true);
                 $(".ClassMixOfIdentification input[type='radio']").on("change", function () { 
                 let selectedValue = $(this).val();
 
@@ -358,8 +380,8 @@ $(document).ready(function () {
     async function handleFormSubmission(event) {
         event.preventDefault();
         $(".errorDiv").empty();
-
-        
+        //If I click a button, I want to input a constatnt value
+       
 
         let isValid = true;
         isValid = validateInput("input[type='text'], input[type='email'], input[type='number'], select") && isValid;
@@ -404,18 +426,18 @@ $(document).ready(function () {
             name: formData.get("busines_utility_bill")?.name || "",
             type: formData.get("busines_utility_bill")?.type || "", 
             data: busines_utility_bill };
-        formattedData.cac_doc = { 
-            name: formData.get("cac_doc")?.name || "",
-            type: formData.get("cac_doc")?.type || "", 
-            data: cac_doc };
+        // formattedData.cac_doc = { 
+        //     name: formData.get("cac_doc")?.name || "",
+        //     type: formData.get("cac_doc")?.type || "", 
+        //     data: cac_doc };
         formattedData.passport = { 
             name: formData.get("passport")?.name || "",
             type: formData.get("passport")?.type || "", 
             data: passport };
-        formattedData.biz_img = { 
-            name: formData.get("biz_img")?.name || "",
-            type: formData.get("biz_img")?.type || "", 
-            data: biz_img };
+        // formattedData.biz_img = { 
+        //     name: formData.get("biz_img")?.name || "",
+        //     type: formData.get("biz_img")?.type || "", 
+        //     data: biz_img };
 
         console.log(formattedData);
 
@@ -431,21 +453,21 @@ $(document).ready(function () {
       root.innerHTML = `<h1>Thank you for your application!</h1><p>${data}</p>`;
       
       // Redirect to success page after 2 seconds
-      setTimeout(() => {
-          window.location.href = "https://sovereignfinanceltd.com"; // Change to your success URL
-      }, 2000);
-      $(".loader").hide();// hide loader
-  })
-  .catch(error => {
-      console.error("Error:", error);
-      const root = document.getElementById('root');
-      root.innerHTML = `<h1>Submission Failed</h1><p>${error}</p>`;
+//       setTimeout(() => {
+//           window.location.href = "https://sovereignfinanceltd.com"; // Change to your success URL
+//       }, 2000);
+//       $(".loader").hide();// hide loader
+//   })
+//   .catch(error => {
+//       console.error("Error:", error);
+//       const root = document.getElementById('root');
+//       root.innerHTML = `<h1>Submission Failed</h1><p>${error}</p>`;
       
       // Redirect back to the form after 3 seconds
-      setTimeout(() => {
-          window.location.href = "https://account-opening-dgej.onrender.com/"; // Change to your form URL
-      }, 3000);
-        $(".loader").hide();// hide loader
+//       setTimeout(() => {
+//           window.location.href = "https://account-opening-dgej.onrender.com/"; // Change to your form URL
+//       }, 3000);
+//         $(".loader").hide();// hide loader
   });
     }
 
