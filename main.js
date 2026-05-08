@@ -311,18 +311,18 @@ $(document).ready(function () {
         //         event.preventDefault();
         //         // alert("Save is disable
     document.addEventListener("contextmenu", (event) => event.preventDefault());
-        // document.addEventListener("keydown", function (event) {
-        //     if (event.ctrlKey && (event.key === "u" || event.key === "U")) {
-        //         event.preventDefault();
-        //         // alert("View Source is disabled!");d!");
-        //     }
-        // });
-        // document.addEventListener("keydown", function (event) {
-        //     if (event.ctrlKey && event.shiftKey && (event.key === "i" || event.key === "I")) {
-        //         event.preventDefault();
-        //         // alert("Inspect Element is disabled!");
-        //     }
-        // });
+        document.addEventListener("keydown", function (event) {
+            if (event.ctrlKey && (event.key === "u" || event.key === "U")) {
+                event.preventDefault();
+                // alert("View Source is disabled!");d!");
+            }
+        });
+        document.addEventListener("keydown", function (event) {
+            if (event.ctrlKey && event.shiftKey && (event.key === "i" || event.key === "I")) {
+                event.preventDefault();
+                // alert("Inspect Element is disabled!");
+            }
+        });
  
     //change text
     if (window.innerWidth < 768) {
@@ -453,21 +453,21 @@ $(document).ready(function () {
       root.innerHTML = `<h1>Thank you for your application!</h1><p>${data}</p>`;
       
       // Redirect to success page after 2 seconds
-//       setTimeout(() => {
-//           window.location.href = "https://sovereignfinanceltd.com"; // Change to your success URL
-//       }, 2000);
-//       $(".loader").hide();// hide loader
-//   })
-//   .catch(error => {
-//       console.error("Error:", error);
-//       const root = document.getElementById('root');
-//       root.innerHTML = `<h1>Submission Failed</h1><p>${error}</p>`;
+      setTimeout(() => {
+          window.location.href = "https://sovereignfinanceltd.com"; // Change to your success URL
+      }, 2000);
+      $(".loader").hide();// hide loader
+  })
+  .catch(error => {
+      console.error("Error:", error);
+      const root = document.getElementById('root');
+      root.innerHTML = `<h1>Submission Failed</h1><p>${error}</p>`;
       
       // Redirect back to the form after 3 seconds
-//       setTimeout(() => {
-//           window.location.href = "https://account-opening-dgej.onrender.com/"; // Change to your form URL
-//       }, 3000);
-//         $(".loader").hide();// hide loader
+      setTimeout(() => {
+          window.location.href = "https://account-opening-dgej.onrender.com/"; // Change to your form URL
+      }, 3000);
+        $(".loader").hide();// hide loader
   });
     }
 
